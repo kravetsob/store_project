@@ -13,7 +13,9 @@
 @section('content')
     <div class="product-list">
         <ul>
-            @if(!isset($products))
+            @if($products->isEmpty())
+                <li><p>No products available at the moment. <a href="{{ route('index') }}">Back to Home</a></p></li>
+            @else
                 @foreach ($products as $product)
                     <li class="product-item">
                         <a href="{{ route('product.show', $product->id) }}">
@@ -26,8 +28,6 @@
                         </div>
                     </li>
                 @endforeach
-            @else
-                <li><a href="{{ route('index') }}"> No products yet! << Click on link to back Home page </a></li>
             @endif
         </ul>
     </div>
