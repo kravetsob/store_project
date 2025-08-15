@@ -49,7 +49,7 @@ class OrderController extends Controller
         $cart = $this->cart->get();
 
         if (empty($cart['items'])) {
-            return redirect()->back()->with('error', 'Empty cart');
+            return redirect()->back()->withErrors(['cart' => 'Your cart is empty.'])->withInput();
         }
 
         $order = new Order();

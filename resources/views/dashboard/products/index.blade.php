@@ -3,6 +3,7 @@
 @section('title', 'Products')
 
 @section('content')
+    @include('common.errors')
     <div class="d-flex justify-content-between align-items-center mb-3">
         <h2>Products</h2>
         <a href="{{ route('dashboard.products.create') }}" class="btn btn-primary">Create Product</a>

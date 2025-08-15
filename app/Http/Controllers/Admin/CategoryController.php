@@ -74,6 +74,10 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
+        if ($category->products()->count() > 0) {
+            return redirect()->back()->withErrors('You cannot delete this category because it contains products. Please remove the products first.');
+        }
+
         $category->delete();
         return redirect()->route("dashboard.categories.index");
     }

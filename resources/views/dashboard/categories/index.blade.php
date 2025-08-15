@@ -3,11 +3,11 @@
 @section('title', 'Dashboard - Categories')
 
 @section('content')
+    @include('common.errors')
     <div class="d-flex justify-content-between align-items-center mb-3">
         <h2>Categories</h2>
         <a href="{{ route('dashboard.categories.create') }}" class="btn btn-primary">Create Category</a>
     </div>
-
     <div class="table-responsive">
         <table class="table table-bordered table-striped align-middle">
             <thead class="table-light">

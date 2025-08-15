@@ -80,6 +80,9 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
+        if ($product->orderDetails()->count() > 0) {
+            return redirect()->back()->withErrors('You cannot delete this product because it contains order-details. Please remove the orders first.');
+        }
         $product->delete();
         return redirect()->route("dashboard.products.index");
     }
