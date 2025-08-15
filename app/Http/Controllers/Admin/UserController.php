@@ -9,6 +9,11 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
+    /**
+     * Display a listing of all users.
+     * @param User $user
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Foundation\Application
+     */
     public function index(User $user)
     {
         return view("dashboard.users.index", [
@@ -16,11 +21,21 @@ class UserController extends Controller
         ]);
     }
 
+    /**
+     * Show the form for creating a new user.
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Foundation\Application
+     */
     public function create()
     {
         return view('dashboard.users.create');
     }
 
+    /**
+     * Store created user in storage.
+     * @param Request $request
+     * @param Hasher $hasher
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function store(Request $request, Hasher $hasher)
     {
         $user = new User();
@@ -32,6 +47,11 @@ class UserController extends Controller
         return redirect()->route("dashboard.users.index");
     }
 
+    /**
+     * Remove user.
+     * @param User $user
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function destroy(User $user)
     {
         $user->delete();

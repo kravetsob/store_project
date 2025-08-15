@@ -10,17 +10,28 @@ class Category extends Model
 {
     use HasFactory;
 
+    /**
+     * @var bool
+     */
     public $timestamps = false;
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function products()
     {
         return $this->hasMany(Product::class);
     }
 
+    /**
+     * @var string[]
+     */
     protected $fillable = ['name', 'path'];
 
     /**
-     * Логика сохранения или обновления категории
+     * Handle the saving or updating of the category.
+     * @param Request $request
+     * @return void
      */
     public function handle(Request $request)
     {

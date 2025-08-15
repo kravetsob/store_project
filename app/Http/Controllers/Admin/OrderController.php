@@ -9,6 +9,11 @@ use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
+    /**
+     * Display a listing of all orders.
+     * @param Order $order
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Foundation\Application
+     */
     public function index(Order $order)
     {
         return view('dashboard.orders.index', [
@@ -16,6 +21,12 @@ class OrderController extends Controller
         ]);
     }
 
+    /**
+     * Show the form for editing the specified order.
+     * @param Order $order
+     * @param State $state
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Foundation\Application
+     */
     public function edit(Order $order, State $state)
     {
         return view('dashboard.orders.edit', [
@@ -24,6 +35,12 @@ class OrderController extends Controller
         ]);
     }
 
+    /**
+     * Update the specified order in storage.
+     * @param Request $request
+     * @param Order $order
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function update(Request $request, Order $order)
     {
         $order->state_id = $request->input('status');

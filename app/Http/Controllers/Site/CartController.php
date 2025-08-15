@@ -9,13 +9,25 @@ use App\Models\Cart;
 
 class CartController extends Controller
 {
-
+    /**
+     * @var Cart
+     */
     protected Cart $cart;
+
+    /**
+     * CartController constructor.
+     */
     public function __construct()
     {
         $this->cart = new Cart;
     }
 
+    /**
+     * Add a product to the shopping cart.
+     * @param Product $product
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function add(Product $product, Request $request)
     {
         $request->validate([

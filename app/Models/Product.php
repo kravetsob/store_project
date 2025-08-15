@@ -9,21 +9,36 @@ class Product extends Model
 {
     use HasFactory;
 
+    /**
+     * @var bool
+     */
     public $timestamps = false;
+
+    /**
+     * @var string[]
+     */
     protected $fillable = ['name', 'category_id', 'price', 'description', 'path'];
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function category()
     {
         return $this->belongsTo(Category::class);
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function orderDetails()
     {
         return $this->hasMany(OrderDetail::class);
     }
 
     /**
-     * Логика для создания или обновления продукта
+     * Handle creating or updating a product.
+     * @param Request $request
+     * @return void
      */
     public function handle(Request $request)
     {

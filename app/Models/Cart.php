@@ -8,8 +8,16 @@ use Illuminate\Support\Facades\Session;
 
 class Cart extends Model
 {
+    /**
+     * The session key used to store the cart data.
+     * @var string
+     */
     protected string $sessionKey = 'cart';
 
+    /**
+     * Get the current cart from the session.
+     * @return array
+     */
     public function get(): array
     {
         return Session::get($this->sessionKey, [
@@ -19,6 +27,12 @@ class Cart extends Model
         ]);
     }
 
+    /**
+     * Add a product to the cart or update its quantity.
+     * @param int $productId
+     * @param int $quantity
+     * @return array
+     */
     public function add(int $productId, int $quantity): array
     {
         $product = Product::findOrFail($productId);
@@ -55,6 +69,10 @@ class Cart extends Model
         return $cart;
     }
 
+    /**
+     * Clear the cart from the session.
+     * @return void
+     */
     public function clear(): void
     {
         Session::forget($this->sessionKey);

@@ -10,18 +10,34 @@ use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
+    /**
+     * @var Cart
+     */
     protected Cart $cart;
 
+    /**
+     * OrderController constructor.
+     */
     public function __construct()
     {
         $this->cart = new Cart();
     }
 
+    /**
+     * Show the checkout page.
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Foundation\Application
+     */
     public function show()
     {
         return view('orders.checkout');
     }
 
+    /**
+     * Store the order details and create an order in the database.
+     * @param Request $request
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Http\RedirectResponse
+     * @throws \Illuminate\Validation\ValidationException
+     */
     public function store(Request $request)
     {
         $this->validate($request, [

@@ -8,6 +8,11 @@ use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
+    /**
+     * Display a listing of all categories.
+     * @param Category $category
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Foundation\Application
+     */
     public function index(Category $category)
     {
         return view("dashboard.categories.index", [
@@ -15,11 +20,20 @@ class CategoryController extends Controller
         ]);
     }
 
+    /**
+     * Show the form for creating a new category.
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Foundation\Application
+     */
     public function create()
     {
         return view('dashboard.categories.create');
     }
 
+    /**
+     * Show the form for editing the specified category.
+     * @param Category $category
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Foundation\Application
+     */
     public function edit(Category $category)
     {
         return view("dashboard.categories.edit", [
@@ -28,7 +42,10 @@ class CategoryController extends Controller
     }
 
     /**
-     * Обновление категории
+     * Update the specified category in storage.
+     * @param Category $category
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(Category $category, Request $request)
     {
@@ -38,7 +55,9 @@ class CategoryController extends Controller
     }
 
     /**
-     * Сохранение новой категории
+     * Store created category in storage.
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
@@ -49,7 +68,9 @@ class CategoryController extends Controller
     }
 
     /**
-     * Удаление категории
+     * Remove the specified category from storage.
+     * @param Category $category
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy(Category $category)
     {
