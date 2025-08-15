@@ -15,6 +15,8 @@ Auth::routes(['register' => false]);
 
 //site routes
 Route::get('/',[IndexController::class,'index'])->name('index');
+Route::view('/about', 'about')->name('about');
+Route::view('/contacts', 'contacts')->name('contacts');
 Route::get('categories/{category}/products', [ProductController::class, 'getByCategory'])->name('categories.products');
 Route::get('products/{product}', [ProductController::class, 'show'])->name('product.show');
 Route::get('cart/order', [OrderController::class, 'show'])->name('cart.order');
@@ -45,6 +47,7 @@ Route::middleware('auth')->prefix('dashboard')
         Route::resource('users', UserController::class)
             ->except(['show'])
             ->names('users');
+
 });
 
 

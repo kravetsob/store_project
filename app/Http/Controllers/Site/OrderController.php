@@ -12,9 +12,9 @@ class OrderController extends Controller
 {
     protected Cart $cart;
 
-    public function __construct(Cart $cart)
+    public function __construct()
     {
-        $this->cart = $cart;
+        $this->cart = new Cart();
     }
 
     public function show()
@@ -30,13 +30,13 @@ class OrderController extends Controller
             'deliveryInfo' => 'required|string|max:500',
         ]);
 
-        $cart = $this->cart->getCart();
+        $cart = $this->cart->get();
 
         if (empty($cart['items'])) {
             return redirect()->back()->with('error', 'Empty cart');
         }
 
-        $order = new Order;
+        $order = new Order();
         $order->number = 'ORD - ' . now()->format('YmdHis');
         $order->state_id = 1;
         $order->customer_name = $request->input('customerName');
@@ -45,7 +45,7 @@ class OrderController extends Controller
         $order->save();
 
         foreach ($cart['items'] as $productId => $item) {
-            $orderDetail = new OrderDetail;
+            $orderDetail = new OrderDetail();
             $orderDetail->order_id = $order->id;
             $orderDetail->prod_id = $productId;
             $orderDetail->price = $item['price'];

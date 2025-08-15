@@ -25,9 +25,7 @@
                 <label for="qty"></label>
                 <div class="quantity-row">
                     <div class="quantity-control">
-{{--                        <button type="button" class="decrement">-</button>--}}
                         <input type="number" id="qty" name="qty" value="{{ old('qty', 1) }}" min="1" />
-{{--                        <button type="button" class="increment">+</button>--}}
                     </div>
                     <input type="submit" value="Add to cart" class="add-button">
                 </div>

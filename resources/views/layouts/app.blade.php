@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="{{ asset('css/style.css') }}">
         @stack('styles')
-        <title>MyStore</title>
+        <title>Happy Toys</title>
     </head>
     <body>
         <header class="site-header">
@@ -18,8 +18,8 @@
             <nav class="main-nav">
                 <ul>
                     <li><a href="{{ route('index') }}">Home</a></li>
-                    <li><a href="#">About us</a></li>
-                    <li><a href="#">Contacts</a></li>
+                    <li><a href="{{ route('about') }}">About us</a></li>
+                    <li><a href="{{ route('contacts') }}">Contacts</a></li>
                 </ul>
             </nav>
 

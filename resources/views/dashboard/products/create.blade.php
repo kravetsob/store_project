@@ -11,7 +11,7 @@
         <div class="card-body">
             <form action="{{ route('dashboard.products.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
-
+                @include('common.errors')
                 <div class="mb-3">
                     <label for="category" class="form-label">Product Category</label>
                     <select name="category" id="category" class="form-select" required>

@@ -15,7 +15,7 @@
             <p><strong>Status:</strong>
                 <span class="badge bg-info text-dark">{{ ucfirst($order->state->name) }}</span>
             </p>
-
+            @include('common.errors')
             <form action="{{ route('dashboard.orders.update', $order->id) }}" method="POST">
                 @csrf
                 @method('PATCH')

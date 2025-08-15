@@ -7,7 +7,7 @@
         <div class="card-header">
             <h4>Create New Category</h4>
         </div>
-
+        @include('common.errors')
         <div class="card-body">
             <form action="{{ route('dashboard.categories.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf

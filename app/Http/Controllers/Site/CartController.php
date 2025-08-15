@@ -13,7 +13,7 @@ class CartController extends Controller
     protected Cart $cart;
     public function __construct()
     {
-        $this->cart = new Cart();
+        $this->cart = new Cart;
     }
 
     public function add(Product $product, Request $request)

@@ -31,11 +31,11 @@ class Product extends Model
             'name' => 'required|string|max:255',
             'price' => 'required|numeric|min:0',
             'description' => 'nullable|string',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'image' => 'nullable|image|max:2048',
         ]);
 
         $this->name = $validated['name'];
-        $this->category_id = $validated['category'];
+        $this->category_id = $request->input('category');
         $this->price = $validated['price'];
         $this->description = $validated['description'];
 

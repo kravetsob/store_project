@@ -12,14 +12,14 @@
             <form action="{{ route('dashboard.products.update', $product->id) }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
-
+                @include('common.errors')
                 <div class="mb-3">
                     <label for="category" class="form-label">Product Category</label>
                     <select name="category" id="category" class="form-select" required>
                         <option value="">-- Select Category --</option>
                         @foreach ($categories as $category)
-                            <option value="{{ $category->id }}" {{ old('category') == $category->id ? 'selected' : '' }}>
-                                {{ $category->name }}
+                            <option value="{{ $category->id }}" {{ old('category', $product->category_id) == $category->id ? 'selected' : '' }}>
+                            {{ $category->name }}
                             </option>
                         @endforeach
                     </select>

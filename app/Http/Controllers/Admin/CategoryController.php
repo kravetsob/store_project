@@ -32,7 +32,7 @@ class CategoryController extends Controller
      */
     public function update(Category $category, Request $request)
     {
-        $category->handle($request); // Вызов метода экземпляра для сохранения/обновления
+        $category->handle($request);
 
         return redirect()->route("dashboard.categories.index");
     }
@@ -42,8 +42,8 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        $category = new Category;  // Создаем новый экземпляр
-        $category->handle($request);  // Вызов метода экземпляра
+        $category = new Category();
+        $category->handle($request);
 
         return redirect()->route("dashboard.categories.index");
     }
