@@ -9,8 +9,10 @@ class IndexController extends Controller
 {
     public function index(Category $category)
     {
+        $categories = $category->orderBy('name', 'asc')->get();
+
         return view('index', [
-            'categories' => $category->all(),
+            'categories' => $categories,
         ]);
     }
 

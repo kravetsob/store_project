@@ -13,4 +13,10 @@ class Order extends Model
     {
         return $this->hasMany(OrderDetail::class);
     }
+
+    public function state()
+    {
+        return $this->belongsTo(State::class, 'state_id');
+    }
+
 }

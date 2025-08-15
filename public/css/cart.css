@@ -1,0 +1,32 @@
+.cart-container {
+    position: relative;
+    display: inline-block;
+}
+.cart-link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #333333;
+    font-size: 18px;
+}
+.cart-icon {
+    font-size: 24px;
+    margin-right: 10px;
+    width: 50px;
+    height: 50px;
+}
+.item-count {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background-color: #f44336;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

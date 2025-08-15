@@ -2,15 +2,28 @@
 
 @section('title', 'Products')
 
+@push('styles')
+    <link rel="stylesheet" href="{{ asset('css/products.css') }}">
+@endpush
+
+@section('cart')
+    @include('partials.cart')
+@endsection
+
 @section('content')
-    <div>
+    <div class="product-list">
         <ul>
             @foreach ($products as $product)
-            <li>
-                <a href="{{ route('product.show', $product->id) }}">
-                    {{ $product->name }}
-                </a>
-            </li>
+                <li class="product-item">
+                    <a href="{{ route('product.show', $product->id) }}">
+                        <img src="{{ asset('storage/' . $product->path) }}" alt="{{ $product->name }}"/>
+                        <span>{{ $product->name }}</span>
+                    </a>
+                    <div class="buy-product">
+                        <div class="buy-button"><a href="{{ route('product.show', $product->id) }}">Buy</a></div>
+                        <div>Price: ${{ $product->price }}</div>
+                    </div>
+                </li>
             @endforeach
         </ul>
     </div>

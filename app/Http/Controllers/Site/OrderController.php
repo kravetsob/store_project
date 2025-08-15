@@ -5,19 +5,36 @@ namespace App\Http\Controllers\Site;
 use App\Http\Controllers\Controller;
 use App\Models\Order;
 use App\Models\OrderDetail;
-use App\Models\Product;
+use App\Models\Cart;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
-    public function show(Request $request)
+    protected Cart $cart;
+
+    public function __construct(Cart $cart)
+    {
+        $this->cart = $cart;
+    }
+
+    public function show()
     {
         return view('orders.checkout');
     }
 
-    public function store(Request $request, Product $product)
+    public function store(Request $request)
     {
-        $cart = session('cart');
+        $this->validate($request, [
+            'customerName' => 'required|string|max:255',
+            'customerPhone' => 'required|string|max:20',
+            'deliveryInfo' => 'required|string|max:500',
+        ]);
+
+        $cart = $this->cart->getCart();
+
+        if (empty($cart['items'])) {
+            return redirect()->back()->with('error', 'Empty cart');
+        }
 
         $order = new Order;
         $order->number = 'ORD - ' . now()->format('YmdHis');
@@ -27,7 +44,7 @@ class OrderController extends Controller
         $order->delivery_address = $request->input('deliveryInfo');
         $order->save();
 
-        foreach ($cart as $productId => $item) {
+        foreach ($cart['items'] as $productId => $item) {
             $orderDetail = new OrderDetail;
             $orderDetail->order_id = $order->id;
             $orderDetail->prod_id = $productId;
@@ -36,13 +53,8 @@ class OrderController extends Controller
             $orderDetail->save();
         }
 
-        session()->forget('cart');
-        session()->forget('cartTotal');
-        return view('orders.thankyou',[
-            'order' => $order->number,
-            'date' => $order->created_at,
-            'qty' => $order->qty,
-            'state' => '',
-        ]);
+        $this->cart->clear();
+
+        return view('orders.thankyou');
     }
 }

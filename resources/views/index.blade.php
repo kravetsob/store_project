@@ -2,16 +2,25 @@
 
 @section('title', 'Home')
 
-@section('content')
-{{--    <h2><a href="{{route('products.index')}}">Categories</a></h2>--}}
-    <ul>
-        @foreach ($categories as $category)
-            <li>
-                <a href="{{ route('categories.products', $category->id) }}">
-                    {{ $category->name }}
-                </a>
-            </li>
-        @endforeach
-    </ul>
+@push('styles')
+    <link rel="stylesheet" href="{{ asset('css/categories.css') }}">
+@endpush
+
+@section('cart')
+    @include('partials.cart')
 @endsection
 
+@section('content')
+    <div class="category-grid">
+        @foreach ($categories as $category)
+            <div class="category-item">
+                <a href="{{ route('categories.products', $category->id) }}">
+                    <div class="category-content">
+                        <img src="{{asset( 'storage/' . $category->path )}}" alt="" class="categories-img"/>
+                        <div class="category-name">{{ $category->name }}</div>
+                    </div>
+                </a>
+            </div>
+        @endforeach
+    </div>
+@endsection

@@ -5,44 +5,27 @@ namespace App\Http\Controllers\Site;
 use App\Http\Controllers\Controller;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use App\Models\Cart;
 
 class CartController extends Controller
 {
-    public function add(Request $request, Product $product)
+
+    protected Cart $cart;
+    public function __construct()
     {
-        $cart = session('cart',[]);
-        $totalQty = 0;
-        $totalPrice = 0;
-
-        $prodId = $product->id;
-        $qty = $request->input('qty', 0);
-
-        if(isset($cart[$prodId])){
-            $cart[$prodId]['quantity'] += $qty;
-        }else{
-            $cart[$prodId] = [
-                'name' => $product->name,
-                'quantity' => $qty,
-                'price' => $product->price,
-            ];
-        };
-
-        foreach ($cart as $item){
-            $totalQty += $item['quantity'];
-            $totalPrice += $item['price'] * $item['quantity'];
-        }
-
-        session([
-            'cart' => $cart,
-            'cartTotal' => [
-                'totalQty' => $totalQty,
-                'totalPrice' => $totalPrice
-            ],
-        ]);
-
-        return redirect()->back()->withInput();
+        $this->cart = new Cart();
     }
 
+    public function add(Product $product, Request $request)
+    {
+        $request->validate([
+            'qty' => 'required|integer|min:1',
+        ]);
 
+        $qty = (int) $request->input('qty', 1);
 
+        $this->cart->add($product->id, $qty);
+
+        return redirect()->back()->with('success', 'Product added to cart successfully!');
+    }
 }
