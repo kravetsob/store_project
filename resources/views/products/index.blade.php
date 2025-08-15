@@ -13,18 +13,22 @@
 @section('content')
     <div class="product-list">
         <ul>
-            @foreach ($products as $product)
-                <li class="product-item">
-                    <a href="{{ route('product.show', $product->id) }}">
-                        <img src="{{ asset('storage/' . $product->path) }}" alt="{{ $product->name }}"/>
-                        <span>{{ $product->name }}</span>
-                    </a>
-                    <div class="buy-product">
-                        <div class="buy-button"><a href="{{ route('product.show', $product->id) }}">Buy</a></div>
-                        <div>Price: ${{ $product->price }}</div>
-                    </div>
-                </li>
-            @endforeach
+            @if(!isset($products))
+                @foreach ($products as $product)
+                    <li class="product-item">
+                        <a href="{{ route('product.show', $product->id) }}">
+                            <img src="{{ asset('storage/' . $product->path) }}" alt="{{ $product->name }}"/>
+                            <span>{{ $product->name }}</span>
+                        </a>
+                        <div class="buy-product">
+                            <div class="buy-button"><a href="{{ route('product.show', $product->id) }}">Buy</a></div>
+                            <div>Price: ${{ $product->price }}</div>
+                        </div>
+                    </li>
+                @endforeach
+            @else
+                <li><a href="{{ route('index') }}"> No products yet! << Click on link to back Home page </a></li>
+            @endif
         </ul>
     </div>
 @endsection
