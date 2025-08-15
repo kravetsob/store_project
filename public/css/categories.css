@@ -14,10 +14,6 @@
     transition: background-color 0.3s ease;
     padding: 40px 20px;
 }
-.category-item a:hover {
-    /*background-color: #ffb926;*/
-    /*font-weight: bolder;*/
-}
 .category-item a {
     text-decoration: none;
     color: inherit;

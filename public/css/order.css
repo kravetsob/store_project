@@ -24,11 +24,11 @@
     height: 60px;
     object-fit: cover;
     border-radius: 8px;
-    border: 1px solid #ccc;
+    border: 1px solid #cccccc;
 }
 .order-details {
     flex: 1 1 40%;
-    background: #fff;
+    background: #ffffff;
     padding: 20px;
     border-radius: 6px;
     box-shadow: 0 1px 6px rgba(0,0,0,0.1);
@@ -44,7 +44,7 @@
 }
 .order-details input[type="text"] {
     padding: 8px;
-    border: 1px solid #ccc;
+    border: 1px solid #cccccc;
     border-radius: 5px;
     font-size: 14px;
 }
@@ -70,7 +70,7 @@
     max-height: 600px;
 }
 .cart-item {
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid #dddddd;
     padding: 12px 0;
 }
 .cart-item div {
